@@ -1,5 +1,5 @@
 <?php
-require_once("../conexio.php");
+require_once("../conexion.php");
 $result=mysqli_query($mysqli,"SELECT id, nombre FROM medio");
 $arr = array();
 if($result->num_rows > 0) {
