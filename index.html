@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Sicla">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="lib/img/logos/Logo2.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="lib/angular/angular.js"></script> 
+    <script src="lib/angular/angular-route.js"></script>  
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives/loginDirective.js"></script>
+    <script src="js/controllers/loginCtrl.js"></script>
+    <script src="js/controllers/noticiasCtrl.js"></script>
+    <script src="js/controllers/homeCtrl.js"></script>
+    <script src="js/services/loginService.js"></script>
+    <script src="js/services/sessionService.js"></script>
+    <script src="lib/angular/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <link href="lib/css/bootstrap.css" rel="stylesheet">
+    <link href="lib/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/css/default-index.css" rel="stylesheet">  
+    <title>Sicla</title>
+</head>
+
+<body>
+    <div class="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top " >
+        <div class="container " >
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/contacto">Información y contacto</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sesion <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/login">Iniciar Sesion</a>
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+<div class="header">
+        <div class="row">
+        <div class="col-sm-4">
+        </div>
+            <div class="col-sm-4">
+                <a href="#/inicio"><img class="img-responsive" src="lib/img/logos/logo.jpg"></a>
+            </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>
+<div class="content">  
+    <div ng-view></div>
+</div><!--
+<div class="footer">
+    <div class="section-colored text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; MTech 2014</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+    <script src="js/core/jquery-1.10.2.js"></script>
+    <script src="js/core/bootstrap.js"></script>
+    <script src="js/core/modern-business.js"></script>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+                <br>
+
+              <div class="col-xs-5 col-xs-offset-3">
+
+                <form name="formProtagonista" class=" well well-sm" role="form">
+                  <h3 class="text-center">Alta de Protagonista</h3>
+                  <hr>
+                  <div class="form-group">
+                    <label for="protagonista1">Nombre de Protagonista</label>
+                    <input ng-model="protagonista.nombre" type="text" class="form-control" id="nombreProtagonista" placeholder="Nombre de nuevo protagonista" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Genero</label>
+                    <select class="form-control" ng-model="protagonista.genero" required>
+                      <option value="SN"> Sin Especificar
+                      </option>
+                      <option value="F"> Femenino
+                      </option>
+                      <option value="M"> Masculino
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Cargo</label>
+                    <input ng-model="protagonista.cargo" type="text" class="form-control" id="nombreProtagonista" placeholder="Cargo que ocupa el protagonista" required>
+                  </div> 
+                    <button class=" btn btn-primary btn-md btn-block" ng-disabled="formProtagonista.$invalid" ng-click="updateProtagonista(protagonista)">Guardar</button>  
+                </form>
+              <div class="col-sm-12">
+                  <br>
+                <div class="{{alerta.tipo}}" id="mensajes">
+                  {{alerta.mensaje}}
+                </div>
+              </div>  
+              </div>
+<div class="col-xs-5">
+  <form class="well well-sm" name="formCargo">
+                  <div class="form-group">
+                    <label>Cargo</label>
+                    <input ng-model="cargo" type="text" class="form-control" placeholder="Cargos" required>
+                  </div> 
+                    <button class=" btn btn-primary btn-md btn-block" ng-disabled="formCargo.$invalid" ng-click="updateProtagonista(protagonista)">Guardar</button> 
+  </form>
+</div>

@@ -1,0 +1,45 @@
+<br>
+
+<div class="col-xs-4 ">
+  <form role="form" class="well well-sm" name="formTema">
+  <div class="form-group">
+    <label for="nombre_tema" >Nombre del Tema</label>
+      <input ng-model="tema.nombre" type="text" class="form-control" id="tema_nombre" placeholder="Introduce nuevo tema" required>
+  </div> 
+   <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formTema.$invalid" ng-click="updateTema(tema)">Guardar Tema
+  </button>
+  </form>
+</div>
+
+
+<div class="col-xs-4">
+  <form role="form" class="well well-sm" name="formSubtema">
+  <div class="form-group">
+    <label for="nombre_tema" >Nombre de Subtema</label>
+      <input ng-model="subtema.nombre" type="text" class="form-control" id="tema_nombre" placeholder="Introduce nuevo tema" required>
+  </div> 
+   <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formSubtema.$invalid" ng-click="updateSubtema(subtema)">Guardar Subtema
+  </button>
+  </form>
+</div>
+
+
+<div class="col-xs-4">
+  <form role="form" class="well well-sm" name="formArea">
+  <div class="form-group">
+    <label for="nombre_tema" >Nombre de Area</label>
+      <input ng-model="area.nombre" type="text" class="form-control" id="tema_nombre" placeholder="Introduce nueva Area" required>
+  </div> 
+   <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formArea.$invalid" ng-click="updateArea(area)">Guardar Area
+  </button>
+  </form>
+</div>
+
+  <div class="col-sm-12">
+    <br>
+    <br>
+    <div class="{{alerta.tipo}}" id="mensajes">
+      {{alerta.mensaje}}
+    </div>
+  </div>
+</div>

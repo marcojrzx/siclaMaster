@@ -1,0 +1,106 @@
+<div class="container">
+<div class="">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-5 well" ng-controller="CarouselDemoCtrl">
+            <h2 class="text-center">8 Columnas</h2>
+            <carousel interval="myInterval" style="width:450px;background-color:#222222">
+                <slide  ng-repeat="slide in slides | orderBy:'-fecha'" active="slide.active" >
+                    <a href="#/nota/8/{{slide.id}}"><img ng-src="{{slide.image}}"style="margin:auto;height:573px;"></a>
+                    <div class="carousel-caption">
+                      <h4></h4>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+    </div>
+
+        <!--
+<div class="row">
+    <div class="col-sm-4">
+        <div class="well well-sm">
+
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="well well-sm">
+
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="well well-sm">
+
+        </div>
+    </div>
+
+
+</div>
+-->
+<div  ng-repeat="nota in notasDefault |  orderBy:'-fecha' | limitTo:12" >
+
+  <div class="col-xs-6" >
+    <div class="">
+    <a href="#/nota/{{nota.idNoticia}}"><div class="thumbnail">
+     <!-- <img ng-src="{{ nota.img8col }}" > -->
+      <div class="container-fluid">
+        <div class="thumbnail-Title" style="background-color:" >
+            <h3>{{ nota.titulo }} - <small>{{ nota.nombre }},   {{ nota.fecha }}</small> </h3>
+        </div>
+        <hr>
+        <p>{{ nota.sintesis }}</p>
+        <hr>
+        <div class="thumbnail-bottom">
+          <div class="container-fluid">
+            <div class="">
+            <!--
+                <div class="row">                 
+                        <div class="col-sm-4" ng-repeat="nota in notasDefault | limitTo:3 ">
+                            
+                                <div >
+                                    #{{nota.titulo}}
+                                </div>
+                            </div>
+
+
+                </div>  -->
+          </div>
+          </div>
+        </div>
+        </div>
+      </div></a>
+    </div>
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--
+                    <br>
+            <ol class="breadcrumb">
+                <li class="active"><a href="#/home">sicla</a></li>
+            </ol>
+
+            <div class="col-md-12" ng-repeat="nota in notasDefault" >
+                <h2 >{{ nota.titulo }}  <small>-{{ nota.autor }}</small></h2>
+                <h4><small>{{ varPaper[1] }}, {{ varDate[1] }}</small> </h4>
+                <p>{{nota.sintesis}}</p>
+                <hr>
+            </div>
+        -->
+
+
+    <!-- /.section -->

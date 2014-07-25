@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="siclaApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Sicla - Admin</title>
+    <script src="lib/angular/angular.js"></script> 
+    <script src="lib/angular/angular-route.js"></script>  
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="js/admin/appAdminSicla.js"></script>     
+    <script src="js/admin/controlesAdmin.js"></script>
+	<script src="js/services/loginService.js"></script>
+	<script src="js/services/sessionService.js"></script>	
+    <link href="lib/css/bootstrap.css" rel="stylesheet">
+    <link href="lib/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="admin.html">Administrador</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse" >
+          <ul class="nav navbar-nav side-nav">
+            <li  ng-class='{"active":tog==2}' ng-click="tog=2">
+                <a href="#/altas/nota"><i class="fa fa-edit"></i> Nueva Nota</a>
+            </li>
+            <li ng-class='{"active":tog==3}' ng-click="tog=3">
+                <a href="#/altas/protagonista"><i class="fa fa-edit"></i> Nuevo Protagonista</a>
+            </li>
+            <li ng-class='{"active":tog==4}' ng-click="tog=4">
+                <a href="#/altas/medio"><i class="fa fa-edit"></i> Nuevo Medio</a>
+            </li>
+            <li ng-class='{"active":tog==5}' ng-click="tog=5">
+              <a href="#/altas/autor"><i class="fa fa-edit"></i> Nuevo Autor</a>
+            </li>
+            <li ng-class='{"active":tog==6}' ng-click="tog=6">
+                <a href="#/altas/temas"><i class="fa fa-edit"></i> Nuevos Temas y Areas</a>
+            </li>
+          </ul>
+
+          <ul ng-controller="UsrCtrl" class="nav navbar-nav navbar-right navbar-user">
+            <li class="dropdown user-dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{usr.nombre}} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a ng-click="Out()"><i class="fa fa-power-off"></i> Cerrar Sesion</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div ng-view></div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+
+    <!-- JavaScript -->
+    <script src="js/core/jquery-1.10.2.js"></script>
+    <script src="js/core/bootstrap.js"></script>
+
+    <!-- Page Specific Plugins -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+    <script src="js/admin/morris/chart-data-morris.js"></script>
+    <script src="js/admin/tablesorter/jquery.tablesorter.js"></script>
+    <script src="js/admin/tablesorter/tables.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,280 @@
+                <br>
+                <div class="col-sm-12">
+                <form  name="formNotas"class="well" role="form">
+                      <div class="row">
+                        <div class="col-xs-6">
+                         <div class="form-group">
+                            <div class="row">
+                              <div class="col-xs-3">
+                                <label>Medio</label>
+                              </div>
+                              <div class="col-xs-9">
+                                <select ng-model="nota.medio" ng-options="opMedios.nombre for opMedios in opcionesMedios" ng-change="getAutor(nota.medio.id)" class="form-control" placeholder="medio">
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                         <div class="form-group" >
+                          <div class="row">
+                            <div class="col-xs-3">
+                              <label>Autor</label>
+                            </div>
+                            <div class="col-xs-9">
+                              <select ng-disabled="!nota.medio" ng-model="nota.autor" ng-options="opAutores.nombre for opAutores in opcionesAutores" class="form-control" placeholder="Autor">
+                              </select>
+                            </div>
+                          </div>
+                         </div>
+                        </div>
+                      </div>
+<hr>  
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-3">
+                              <label>Titulo de la Nota</label>
+                            </div>
+                            <div class="col-xs-9">
+                              <input type="email" class="form-control" id="inputEmail3" placeholder="Titulo">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-3">
+                              <label>Sintesis</label>
+                            </div>
+                            <div class="col-xs-9">
+                              <textarea class="form-control" ng-model="nota.sintesis" rows="5" placeholder="Breve Sintesis"></textarea>
+                            </div>
+                          </div> 
+                       </div>
+            
+                      <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-3">
+                              <label>Texto Completo</label>
+                            </div>
+                            <div class="col-xs-9">
+                              <textarea class="form-control" ng-model="nota.texto" rows="15" placeholder="Nota Completa"></textarea>
+                            </div>
+                          </div> 
+                      </div>
+
+<hr/>
+<h4 class="col-xs-offset-5">Detalles de Generales</h4>
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Tipo de nota</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> 8 Columnas</option>
+                                <option value="2"> Nota</option>
+                              </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Página</label>
+                          </div>
+                          <div class="col-xs-9">
+                            <select class="form-control" placeholder="seleccione">
+                              <option></option>
+                              <option value="0"> 0</option>
+                              <option value="1"> 1</option>
+                            </select>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">
+                              <label>Fecha</label>
+                          </div>
+                          <div class="col-xs-9">
+                            <input type="date" ng-model="nota.fecha" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>      
+<div class="row">
+                    <div class="col-xs-4">  
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Protagonista</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Rogelio Hernández</option>
+                                <option value="2"> Efraín García Bello</option>
+                              </select>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                   <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Cargo</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Rogelio Hernández</option>
+                                <option value="2"> Efraín García Bello</option>
+                              </select>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Pos/Neg</label>
+                          </div>
+                          <div class="col-xs-9">
+                            <select class="form-control" ng-control="medio.pos-neg">
+                              <option> Seleccione</option>
+                              <option value="positiva"> Positiva</option>
+                              <option value="negativa"> Negativa</option>
+                            </select>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+</div>
+
+<div class="row">
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Tema</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Organizacion</option>
+                                <option value="2"> Educacion</option>
+                                <option value="3"> Politica</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Subtema</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Organizacion</option>
+                                <option value="2"> Educacion</option>
+                                <option value="3"> Politica</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Otros temas</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Primera Plana</option>
+                                <option value="2"> Region</option>
+                                <option value="3"> Local</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+</div>
+<div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Seccion</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <select class="form-control">
+                                <option> Seleccione</option>
+                                <option value="1"> Primera Plana</option>
+                                <option value="2"> Region</option>
+                                <option value="3"> Local</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Municipio</label>
+                          </div>
+                          <div class="col-xs-9">
+                            <select class="form-control">
+                              <option> Seleccione</option>
+                              <option value="1"> Puebla</option>
+                              <option value="2"> Matamoros</option>
+                              <option value="3"> Cholula</option>
+                            </select>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+</div>
+
+
+
+
+<!--  Archivo  Input -->
+                
+                      <div class="col-xs-6">
+                          <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-3">
+                              <label >Portada</label>
+                            </div>
+                            <div class="col-xs-9">
+                              <input type="file" id="exampleInputFile">
+                            </div>
+                            <p class="help-block">Seleccione portada</p>
+                          </div>
+                        </div>
+                      </div>
+                      <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formMedios.$invalid" ng-click="updateNota(nota)">Guardar
+                    </button>
+                               
+                </form>
+              </div>
+              {{nota}}
