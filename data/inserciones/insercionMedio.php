@@ -3,7 +3,13 @@ require_once("../conexion.php");
 $datos = json_decode(file_get_contents('php://input'));  //obteniendo JSON
 $name = $datos->nombre; // paso los valores a variables porque no pude hacer inserciones desde el $data->value
 $url2 = $datos->url;
-mysqli_query($mysqli,"INSERT INTO medio (nombre, url) VALUES ('$name', '$url2')"); // query qe inserta
+//ingresa imagen
+/*$imagen = $datos->$_FILES['imagen']['name'];
+$ruta = $datos->$_FILES['imagen']['tmp_name'];
+$destino ="img/".$name.".jpg";   //jpg
+copy($ruta,$destino);*/
+
+mysqli_query($mysqli,"INSERT INTO medio (nombre, url /*imagen*/) VALUES ('$name', '$url2' /*'$destino'*/)"); // query qe inserta
 $result=mysqli_query($mysqli,"SELECT * FROM medio");  //este query lo puse para que veas que se pueden hacer varios querys, uno por uno pero asi de simple, recupero los valores que acabo de insertar y los imprimo en consola 
 //desde la linea anterior ya no es nesesario lo demas, como ya dije es solo para poder regresar algo a consola de navegador y dar seguimiento sin entrar a php myadmin porque me quita tiempo
 $arr=array();

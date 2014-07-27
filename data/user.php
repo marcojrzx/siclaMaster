@@ -3,7 +3,7 @@
 	$user=json_decode(file_get_contents('php://input'), true);// obteniendo json
 	$mail = $user['mail'];
 	$pss = $user['pass'];
-	$query = mysqli_query($mysqli, "select idUsr, Nombre_usr from usuario where email_usr = '$mail' and password = $pss");
+	$query = mysqli_query($mysqli, "select idUsr, Nombre_usr from user where email_usr = '$mail' and password = $pss");
 	if($query)
 	{
 		$row = mysqli_fetch_assoc($query);
