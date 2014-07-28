@@ -1,7 +1,7 @@
 <?php 
 	require_once("../conexion.php");
 	$dato = json_decode(file_get_contents('php://input'), true);
-	$idMedio = $dato['medio'];
+	$idMedio = $dato['medio']['id'];
 	$nombre = $dato['nombre'];
 	$genero = $dato['genero'];
 	$mysqli->query("INSERT INTO autores (nombre, idMedio) VALUES('$nombre', $idMedio)");
