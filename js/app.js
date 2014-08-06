@@ -13,6 +13,7 @@ app.config(['$routeProvider',function ($routeProvider){
 	$routeProvider.when('/contacto',{templateUrl:'partials/contacto.html',controller:'contactoCtrl'});
 	$routeProvider.when('/inicio',{templateUrl:'partials/inicio.html',controller:'inicioCtrl'});
 	$routeProvider.when('/home',{templateUrl:'partials/home.html',controller:'homeCtrl'});
+	$routeProvider.when('/registro',{templateUrl:'partials/tpl/altaUsuario.tpl.html',controller:'altaUsrCtrl'});
 	//$routeProvider.when('/home/admin',{templateUrl:'partials/admin.html',controller:'homeCtrl'});
 	//$routeProvider.when('home/admin/alta/protagonista',{templateUrl:'partials/admin/altaProtagonista.html',controller:'FormProtagonista'});
 	//$routeProvider.when('home/admin/alta/medio',{templateUrl:'partials/admin/altaProtagonista.html',controller:'FormMedioCtrl'});

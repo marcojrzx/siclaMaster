@@ -25,7 +25,10 @@ siclaApp.config(['$routeProvider',
       }).when('/altas/temas', {
         templateUrl: 'partials/admin/altaTemas.html',
         controller: 'FormTemasCtrl'
-      }).when('/altas/nota', {
+      }).when('/altas/administradores', {
+        templateUrl: 'partials/admin/altaAdmin.tpl.html',
+        controller: 'altaAdmin'
+    }).when('/altas/nota', {
         templateUrl: 'partials/admin/altaNotas.html',
         controller: 'FormNotasCtrl'
     }).otherwise({
