@@ -5,6 +5,7 @@ app.controller('homeCtrl',['$scope','loginService', function($scope,loginService
 	$scope.logout = function(){
 		loginService.logout();
 	}
+  
 }]);
 
 
@@ -36,21 +37,46 @@ app.controller('altaUsrCtrl', ['$scope','$http',
   
 app.controller('sliderPeriodicos', ['$scope','$http',
   function($scope,$http){
-    $scope.nPeriodicos = {};
-    console.log($scope.nPeriodicos);
-    $http.get("data/consultas/medios.php").success(function(medios){
-    $scope.nPeriodicos=angular.copy(medios);
-    console.log(medios);
-    });
-    console.log($scope.nPeriodicos);
-    //$scope.intervalo="5000"   
-   // var slidePeriodico = $scope.slides[];
-    $http.get("data/consultas/notasRecientes.php").success(function(notasHoy){
-      $scope.notas= notasHoy;
-      console.log();
-      
-    
-  }); 
+    $scope.varPeriodicoActivo;
+    $scope.varNotas = {};
+    var actualizaNotas = function(a){
+      var resultado;
+      $http.get("data/consultas/notasRecientes.php")
+        .success(function(notasHoy){
+          resultado=notasHoy;
+          console.log(notasHoy);
+          console.log(resultado);
+        });
+      console.log(resultado); 
+      return resultado;
+    }
+
+
+
+
+    $http.get("data/consultas/medios.php")
+    .success(function(medios){
+        $scope.varPeriodicos=angular.copy(medios);
+        console.log($scope.varPeriodicos);
+        $http.get("data/consultas/notasRecientes.php")
+        .success(function(notasHoy){
+            var nslide = notasHoy.length;
+           // $scope.varNotas= notasHoy;
+            var slides = $scope.slides = [];
+            $scope.addSlide = function(img,txt,id,fecha) {
+              slides.push({
+                image: img,
+                text: txt,
+                id:id,
+                fecha:fecha
+              });
+            };
+            for (var i=0; i< nslide; i++) {
+             // $scope.addSlide($scope.notas8col[i].img8col,$scope.notas8col[i].titulo,$scope.notas8col[i].idNoticia,$scope.notas8col[i].fecha);
+            }
+
+        });  
+    }); 
 }]);
 
 

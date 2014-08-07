@@ -1,19 +1,19 @@
 <div class="container">
-
         <div class="col-xs-12" ng-controller="sliderPeriodicos">
             <div class="row">
                 <div class="col-xs-4">
                     <carousel interval="intervalo">
-                        <slide ng-repeat="" ></slide>
+                        <slide  ></slide>
                     </carousel>
                 </div>
                 <div class="col-xs-4">
                     <div class="well" >
-                        <select class="form-control" ng-model="opcionActual" ng-options="periodico.nombre for periodico in periodicos |filter:$index">
+                        <select class="form-control" ng-model="varPeriodicoActivo" ng-options="periodico.nombre for periodico in varPeriodicos">
                         </select>
                     </div>
                 </div>
             </div>
+            {{varPeriodicoActivo}}
         </div>
 
 <div class="">

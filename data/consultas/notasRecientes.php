@@ -12,7 +12,8 @@ if($fechaActual->num_rows > 0) {
 }
 
 $result=mysqli_query($mysqli,
-"SELECT noticias.autor,noticias.fecha,noticias.titulo,noticias.sintesis, noticias.img8col AS portada, periodicos.imagen AS imgPeriodico, periodicos.nombre as nombrePeriodico 
+"SELECT noticias.autor,noticias.fecha,noticias.titulo,noticias.sintesis, noticias.img8col AS portada, periodicos.imagen AS imgPeriodico,
+periodicos.nombre as nombrePeriodico, periodicos.idPeriodico as idMedio
 FROM noticias
 INNER JOIN periodicos
 ON noticias.periodico=periodicos.id 
