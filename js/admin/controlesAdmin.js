@@ -183,3 +183,13 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
           $scope.alerta.mensaje =" Dato almacenado en base de datos";
      };
     }]); 
+    
+    siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',
+    function($scope, $http) {
+    	$scope.notas={};
+    	$http.get('data/consultas/notasRecientes.php').success(
+    	function(data) {
+    		$scope.notas = data;
+    		console.log(data);
+    	});
+    }]);
