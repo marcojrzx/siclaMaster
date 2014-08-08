@@ -3,6 +3,11 @@
 <div class="col-xs-4 ">
   <form role="form" class="well well-sm" name="formTema">
   <div class="form-group">
+    <label>Area del Tema</label>
+      <select class="form-control" ng-model="tema.area" ng-options="opArea.nombre for opArea in opcionesArea" required>
+      </select>
+  </div>
+  <div class="form-group">
     <label for="nombre_tema" >Nombre del Tema</label>
       <input ng-model="tema.nombre" type="text" class="form-control" id="tema_nombre" placeholder="Introduce nuevo tema" required>
   </div> 
@@ -14,6 +19,16 @@
 
 <div class="col-xs-4">
   <form role="form" class="well well-sm" name="formSubtema">
+  <div class="form-group">
+    <label>Area del Tema</label>
+      <select class="form-control" ng-model="subtema.area" ng-change="getTema(subtema.area.idArea)" ng-options="opArea.nombre for opArea in opcionesArea" required>
+      </select>
+  </div>
+  <div class="form-group">
+    <label>Tema del Subtema</label>
+      <select class="form-control" ng-disable="!subtema.area" ng-model="subtema.tema" ng-options="opTema.nombre for opTema in opcionesTema" required>
+      </select>
+  </div>
   <div class="form-group">
     <label for="nombre_tema" >Nombre de Subtema</label>
       <input ng-model="subtema.nombre" type="text" class="form-control" id="tema_nombre" placeholder="Introduce nuevo tema" required>

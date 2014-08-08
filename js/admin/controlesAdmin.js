@@ -61,21 +61,48 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
      $scope.formTema = {};
      $scope.formSubtema = {};
      $scope.formArea = {};
-     $scope.updateTema=function(tema){
-      $scope.formTema = angular.copy(tema);
+     $scope.opcionesArea = {};
+     $scope.opcionesTema = {};
+     $http.get('data/consultas/areas.php').success(function(data) {
+     	$scope.opcionesArea = data;
+     	console.log(data);
+     });
+     $scope.getTema = function(area) {
+     	$http.post('data/consultas/temas-area.php', {'area':area}).success(function(data) {
+     		console.log(data);
+     		$scope.opcionesTema = data;
+     	});
+     };
+     $scope.updateTema=function(tema){      
+     console.log(tema);
+      $http.post('data/inserciones/insercionTema.php', tema).success(function(data) {
+      	console.log(data);
+      	$scope.opcionesTema = data;
+      });
+      	  $scope.formTema = angular.copy(tema);
           $scope.alerta.tipo = "alert alert-success";
           $scope.alerta.mensaje =" Tema almacenado  correctamente en base de datos";
      };
       $scope.updateSubtema=function(subtema){
-      $scope.formSubtema = angular.copy(subtema);
+      console.log(subtema);
+      $http.post('data/inserciones/insercionSubtema.php', subtema).success(function(data) {
+      	console.log(data);
+      });
+          $scope.formSubtema = angular.copy(subtema);
           $scope.alerta.tipo = "alert alert-success";
           $scope.alerta.mensaje =" Subtema almacenado  correctamente en base de datos";
      };
       $scope.updateArea=function(area){
-      $scope.formArea = angular.copy(area);
-          $scope.alerta.tipo = "alert alert-success";
+      console.log(area);      
+      $http.post('data/inserciones/insercionArea.php', area).success(function(data) {
+      	console.log(data);
+      	$scope.opcionesArea = data;
+      }); 
+      	  $scope.formArea = angular.copy(area);              
+      	  $scope.alerta.tipo = "alert alert-success";
           $scope.alerta.mensaje =" Area almacenada  correctamente en base de datos";
      };
+               
     }]);
 
   siclaApp.controller('UsrCtrl', ['$scope','$http',
