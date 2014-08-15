@@ -160,8 +160,10 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
           console.log(medio);
           $http.get("data/autores.php?id="+medio).success(
           function(data2){
+			  $('select[ng-model="nota.autor"] option[value=""]').text("Seleccione");
               $scope.opcionesAutores = data2;
               console.log($scope.opcionesAutores);
+			  
           });
         }    
 // OPCIONES PARA TIPO DE NOTA

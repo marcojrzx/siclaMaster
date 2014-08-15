@@ -10,6 +10,7 @@
                               </div>
                               <div class="col-xs-9">
                                 <select ng-model="nota.medio" ng-options="opMedios.nombre for opMedios in opcionesMedios" ng-change="getAutor(nota.medio.id)" class="form-control" placeholder="medio">
+                                <option value="" disabled selected>Seleccione</option>
                                 </select>
                               </div>
                             </div>
@@ -23,6 +24,7 @@
                             </div>
                             <div class="col-xs-9">
                               <select ng-disabled="!nota.medio" ng-model="nota.autor" ng-options="opAutores.nombre for opAutores in opcionesAutores" class="form-control" placeholder="Autor">
+                              <option value="" disabled selected></option>
                               </select>
                             </div>
                           </div>
@@ -36,7 +38,7 @@
                               <label>Titulo de la Nota</label>
                             </div>
                             <div class="col-xs-9">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Titulo">
+                              <input type="text" class="form-control" ng-model="nota.titulo" placeholder="Titulo">
                             </div>
                           </div>
                         </div>
@@ -73,8 +75,8 @@
                             <label>Tipo de nota</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
+                              <select class="form-control" ng-model="nota.tipo">
+                                <option value="" disabled selected>Seleccione</option>
                                 <option value="1"> 8 Columnas</option>
                                 <option value="2"> Nota</option>
                               </select>
@@ -89,8 +91,8 @@
                             <label>Página</label>
                           </div>
                           <div class="col-xs-9">
-                            <select class="form-control" placeholder="seleccione">
-                              <option></option>
+                            <select class="form-control" ng-model="nota.pagina">
+                              <option value="" disabled selected>Seleccione</option>
                               <option value="0"> 0</option>
                               <option value="1"> 1</option>
                             </select>
@@ -119,10 +121,8 @@
                             <label>Protagonista</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
-                                <option value="1"> Rogelio Hernández</option>
-                                <option value="2"> Efraín García Bello</option>
+                              <select class="form-control" ng-model="nota.protagonista" ng-options="">
+                                <option value="" disabled selected>Seleccione</option>
                               </select>
                           </div>
                           </div>
@@ -135,10 +135,8 @@
                             <label>Cargo</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
-                                <option value="1"> Rogelio Hernández</option>
-                                <option value="2"> Efraín García Bello</option>
+                              <select class="form-control" ng-model="nota.cargo" ng-disabled="!nota.protagonista" ng-options="">
+                              <option value="" disabled selected></option>
                               </select>
                           </div>
                           </div>
@@ -151,8 +149,8 @@
                             <label>Pos/Neg</label>
                           </div>
                           <div class="col-xs-9">
-                            <select class="form-control" ng-control="medio.pos-neg">
-                              <option> Seleccione</option>
+                            <select class="form-control" ng-control="nota.pos-neg">
+                              <option value="" disabled selected>Seleccione</option>
                               <option value="positiva"> Positiva</option>
                               <option value="negativa"> Negativa</option>
                             </select>
@@ -170,11 +168,8 @@
                             <label>Tema</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
-                                <option value="1"> Organizacion</option>
-                                <option value="2"> Educacion</option>
-                                <option value="3"> Politica</option>
+                              <select class="form-control" ng-model="nota.tema">
+                                <option value="" disabled selected>Seleccione</option>
                               </select>
                             </div>
                           </div>
@@ -188,11 +183,8 @@
                             <label>Subtema</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
-                                <option value="1"> Organizacion</option>
-                                <option value="2"> Educacion</option>
-                                <option value="3"> Politica</option>
+                              <select class="form-control" ng-model="nota.subtema" ng-disabled="!nota.tema">
+                              <option value="" disabled selected></option>
                               </select>
                             </div>
                           </div>
@@ -205,11 +197,8 @@
                             <label>Otros temas</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
-                                <option value="1"> Primera Plana</option>
-                                <option value="2"> Region</option>
-                                <option value="3"> Local</option>
+                              <select class="form-control" ng-model="nota.otros">
+                                <option value="" disabled selected>Seleccione</option>
                               </select>
                             </div>
                           </div>
@@ -225,8 +214,8 @@
                             <label>Seccion</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control">
-                                <option> Seleccione</option>
+                              <select class="form-control" ng-model="nota.seccion">
+                                <option value="" disabled selected>Seleccione</option>
                                 <option value="1"> Primera Plana</option>
                                 <option value="2"> Region</option>
                                 <option value="3"> Local</option>
@@ -242,11 +231,8 @@
                             <label>Municipio</label>
                           </div>
                           <div class="col-xs-9">
-                            <select class="form-control">
-                              <option> Seleccione</option>
-                              <option value="1"> Puebla</option>
-                              <option value="2"> Matamoros</option>
-                              <option value="3"> Cholula</option>
+                            <select class="form-control" ng-model="nota.municipio">
+                              <option value="" disabled selected>Seleccione</option>
                             </select>
                           </div>
                           </div>
