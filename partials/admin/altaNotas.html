@@ -121,7 +121,7 @@
                             <label>Protagonista</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.protagonista" ng-options="">
+                              <select class="form-control" ng-model="nota.protagonista" ng-options="opProtagonista.nombre for opProtagonista in opcionesProtagonsita" ng-change="getCargo(nota.protagonista)">
                                 <option value="" disabled selected>Seleccione</option>
                               </select>
                           </div>
@@ -135,7 +135,7 @@
                             <label>Cargo</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.cargo" ng-disabled="!nota.protagonista" ng-options="">
+                              <select class="form-control" ng-model="nota.cargo" ng-disabled="!nota.protagonista" ng-options="opCargo.nombre for opCargo in opcionesCargo">
                               <option value="" disabled selected></option>
                               </select>
                           </div>
@@ -168,7 +168,7 @@
                             <label>Tema</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.tema">
+                              <select class="form-control" ng-model="nota.tema" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSubtema(nota.tema)">
                                 <option value="" disabled selected>Seleccione</option>
                               </select>
                             </div>
@@ -183,7 +183,7 @@
                             <label>Subtema</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.subtema" ng-disabled="!nota.tema">
+                              <select class="form-control" ng-model="nota.subtema" ng-disabled="!nota.tema" ng-options="opSubtema.nombre for opSubtema in opcionesSubtema">
                               <option value="" disabled selected></option>
                               </select>
                             </div>
@@ -197,7 +197,7 @@
                             <label>Otros temas</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.otros">
+                              <select class="form-control" ng-model="nota.otros" ng-options="opTema.nombre for opTema in opcionesTema">
                                 <option value="" disabled selected>Seleccione</option>
                               </select>
                             </div>
@@ -231,7 +231,7 @@
                             <label>Municipio</label>
                           </div>
                           <div class="col-xs-9">
-                            <select class="form-control" ng-model="nota.municipio">
+                            <select class="form-control" ng-model="nota.municipio" ng-options="opMunicipio.nombre for opMunicipio in opcionesMunicipio">
                               <option value="" disabled selected>Seleccione</option>
                             </select>
                           </div>

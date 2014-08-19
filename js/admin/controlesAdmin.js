@@ -148,13 +148,33 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
   siclaApp.controller('FormNotasCtrl', ['$scope','$http',
   function($scope,$http) {
     $scope.nota={};
-    $scope.opcionesMedios={};
+	$scope.alerta = {"tipo":"","mensaje":""};
+	
 // OPCIONES PARA MEDIOS
     $http.get("data/medios.php").success(
     function(data2){
         $scope.opcionesMedios = data2;
         console.log($scope.opcionesMedios);
     });
+	
+//Opciones para tema
+	$http.get("data/consultas/temas.php").success(function(data){
+		$scope.opcionesTema = data;
+		console.log(data);	
+	});
+
+//Opciones para protagonista 
+	/*$http.get("data/consultas/protagonistas.php").success(function(data){
+		$scope.opcionesProtagonista = data;
+		console.log(data);	
+	});*/
+	
+//Opciones para municipio
+	/*$http.get("data/consultas/municipios.php").success(function(data){
+		$scope.opcionesMunicio = data;
+		console.log(data);
+	});*/
+	
 // OPCIONES PARA AUTOR
         $scope.getAutor=function(medio){
           console.log(medio);
@@ -165,8 +185,37 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
               console.log($scope.opcionesAutores);
 			  
           });
-        }    
-// OPCIONES PARA TIPO DE NOTA
+        }
+
+//Opciones para cargo
+	$scope.getCargo = function(id){
+		$http.post("data/consultas/cargos.php",{'protagonista':id.idProtagonista}).success(function(data){
+			console.log(data);
+			$scope.opcionesCargo = data;
+			$('select[ng-model="nota.cargo"] option[value=""]').text("Seleccione");	
+		});
+	};
+	
+//Opciones para Subtemas
+	$scope.getSubtema = function(id){
+		$http.post("data/consultas/subtemas.php",{'tema':id.idTema}).success(function(data){
+			console.log(data);
+			$scope.opcionesSubtema = data;	
+			$('select[ng-model="nota.subtema"] option[value=""]').text("Seleccione");
+		});
+	};
+	
+//Guardar nota
+	$scope.updateNota = function(nota){
+		console.log(nota);
+		$http.post("data/inserciones/insercionNota.php", nota).success(function(data){
+			console.log(data);
+			$scope.alerta.tipo = "alert alert-success";
+          	$scope.alerta.mensaje =" Dato almacenado en base de datos";	
+		});	
+	};
+		    
+// OPCIONES PARA TIPO DE NOTA No está implementad
         $scope.getTipo=function(){
           console.log(medio);
           $http.get("data/tipo_nota.php").success(
@@ -175,15 +224,6 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
               console.log($scope.opcionesTipoNota);
           });
         }  
-
-
-    $scope.alerta = {"tipo":"","mensaje":""};
-     $scope.formMedio = {};
-     $scope.updateMedio=function(medio){
-      $scope.formMedio = angular.copy(medio);
-          $scope.alerta.tipo = "alert alert-success";
-          $scope.alerta.mensaje =" Dato almacenado en base de datos";
-     };
     }]); 
     
     siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',
