@@ -1,5 +1,5 @@
                 <br>
-              <div class="col-xs-10">
+              <div class="col-xs-6">
                 <form name="formMedios" class="well " role="form">
                           <div class="form-group">
                             <label for="protagonista1">Nombre de Medio</label>
@@ -31,4 +31,28 @@
                   {{alerta.mensaje}}
                 </div>
               </div>
+              </div>
+              <div class="col-xs-6">
+              	<form name="formAutor" role="form" class="well">
+              		<div class="form-group">
+              			<label>Nombre de Medio</label>
+              			<select class="form-control" ng-model="medio" ng-change="getAutor(medio.id)" ng-options="opMedio.nombre for opMedio in opcionesMedios" required>
+              			</select>
+              		</div> 
+              		<br />             	
+              		<div class="form-group">
+              			<label>Nombre de Autor</label>
+              			<select class="form-control" ng-model="autor" ng-disabled="!medio" ng-options="opAutor.nombre for opAutor in opcionesAutor" required>
+              			</select>
+              		</div>
+              		<br /><br />
+              		<button class="btn btn-primary btn-lg btn-block" ng-disabled="formAutor.$invalid" ng-click="updateColabora(medio, autor)">Guardar</button>
+              	</form>
+              	<div class="col-sm-12">
+				<br>
+                <br>
+	            	<div class="{{alerta.tipo}}" id="mensajes">
+						{{alerta.mensaje}}
+              		</div>
+				</div>
               </div>
