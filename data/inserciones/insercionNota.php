@@ -18,4 +18,11 @@
 	$seccion = $datos['seccion'];
 	$municipio = $datos['municipio']['idMunicipio'];
 	$portada = $datos['portada'];
+	$mysqli->query("insert into nota values(null,'$titulo','$fecha','$pagina','$tipo',$municipio,'$sintesis','$texto',null,1)");
+	$result = $mysqli->query("select * from nota");
+	$arr = array();
+	if ($result)
+		while ($row = mysqli_fetch_assoc($result))
+			$arr[] = $row;
+	echo json_encode($arr);
 ?>

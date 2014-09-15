@@ -164,16 +164,16 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 	});
 
 //Opciones para protagonista 
-	/*$http.get("data/consultas/protagonistas.php").success(function(data){
+	$http.get("data/consultas/protagonistas.php").success(function(data){
 		$scope.opcionesProtagonista = data;
 		console.log(data);	
-	});*/
+	});
 	
 //Opciones para municipio
-	/*$http.get("data/consultas/municipios.php").success(function(data){
+	$http.get("data/consultas/municipios.php").success(function(data){
 		$scope.opcionesMunicio = data;
 		console.log(data);
-	});*/
+	});
 	
 // OPCIONES PARA AUTOR
         $scope.getAutor=function(medio){
