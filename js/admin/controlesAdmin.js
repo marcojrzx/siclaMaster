@@ -4,6 +4,11 @@ siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
   function($scope,$http) {
     $scope.alerta = {"tipo":"","mensaje":""};
      $scope.formProtagonista = {};
+	 $scope.cargos = {};
+	 $http.get("data/consultas/allcargos.php").success(function(data){
+		console.log(data);
+		$scope.cargos = data;	 
+	});
      $scope.updateProtagonista=function(protagonista){
       $scope.formProtagonista = angular.copy(protagonista);
 
