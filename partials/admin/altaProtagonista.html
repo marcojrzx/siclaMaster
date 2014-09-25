@@ -40,21 +40,21 @@
                   <div class="form-group">
                    <h3 class="text-center">Alta de Cargo</h3>
                   	<hr>
-                    <input ng-model="cargo" type="text" class="form-control" placeholder="Nombre del Cargo" required>
+                    <input ng-model="cargo.nombre" type="text" class="form-control" placeholder="Nombre del Cargo" required>
                   </div> 
-                    <button class=" btn btn-primary btn-md btn-block" ng-disabled="formCargo.$invalid" ng-click="updateProtagonista(protagonista)">Guardar</button> 
+                    <button class=" btn btn-primary btn-md btn-block" ng-disabled="formCargo.$invalid" ng-click="updateCargo(cargo)">Guardar</button> 
   </form>
 </div>
 <div class="col-xs-6 col-md-4">
-	<form class="well well-sm" name="formCargoProt">
+	<form class="well well-sm" name="formCargoProt" ng-model="formCargoProt">
     	<div class="form-group">
         	<h3 class="text-center">Asignar Cargo a Protagonista</h3>
             <hr />
-            <select ng-model="protagonista" ng-options="opProt for opProt in protagonistas" class="form-control" ng-change="getcargo(protagonista.id)" required>
+            <select ng-model="prot" ng-options="opProt for opProt in protagonistas" class="form-control" ng-change="getcargo(prot)" required>
             	<option value="" disabled selected>Selecciona un protagonista</option>
             </select>
             <hr />
-            <select ng-model="cargo" ng-options="opCar for opCar in cargo" class="form-control" ng-disabled="!protagonista.id" required>
+            <select ng-model="car" ng-options="opCar for opCar in crg" class="form-control" ng-disabled="!prot.id" required>
            		<option value="" disabled selected></option>
             </select>
         </div>

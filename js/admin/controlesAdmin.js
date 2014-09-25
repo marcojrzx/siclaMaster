@@ -4,18 +4,46 @@ siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
   function($scope,$http) {
     $scope.alerta = {"tipo":"","mensaje":""};
      $scope.formProtagonista = {};
-	 $scope.cargos = {};
 	 $http.get("data/consultas/allcargos.php").success(function(data){
 		console.log(data);
 		$scope.cargos = data;	 
-	});
+	 });
+	 $http.get("data/consultas/protagonistas.php").success(function(data){
+		console.log(data);
+		$scope.prot = data;	 
+	 });
      $scope.updateProtagonista=function(protagonista){
-      $scope.formProtagonista = angular.copy(protagonista);
-
-          $scope.alerta.tipo = "alert alert-success";
-          $scope.alerta.mensaje =" Dato almacenado en base de datos";
+		 $http.post("data/inserciones/insercionProtagonista.php",protagonista).success(function(data){
+			$scope.prot = data;
+			console.log(data);	 
+			$scope.alerta.tipo = "alert alert-success";
+         	$scope.alerta.mensaje =" Dato almacenado en base de datos";
+		 });
      };
-    }]); 
+	 $scope.getCargo = function(protagonista){
+		$http.post("data/consultas/notcargos.php",protagonista).success(function(ev){
+			console.log(ev);
+			$scope.crg = ev;	
+		});
+	};
+	$scope.updateProt = function(){
+		var datos = $scope.formCargoProt;
+		$http.post("data/inserciones/insercionCargoProtagonista.php", datos).success(function(data){
+			console.log(data);
+			$scope.crg = data;
+			$scope.alerta.tipo = "alert alert-success";
+         	$scope.alerta.mensaje =" Dato almacenado en base de datos";		
+		});
+	};
+	$scope.updateCargo = function(cargo){
+	 	$http.post("data/inserciones/insercionCargo.php",cargo).success(function(data){
+			$scope.cargos = data;
+			console.log(data);
+			$scope.alerta.tipo = "alert alert-success";
+         	$scope.alerta.mensaje =" Dato almacenado en base de datos";	
+		});
+	};
+}]); 
 
 siclaApp.controller('FormMedioCtrl', ['$scope','$http',
   function($scope,$http) {
