@@ -1,0 +1,38 @@
+<br>
+
+<div class="col-xs-6 ">
+  <form role="form" class="well well-sm" name="formEstado">
+  <div class="form-group">
+    <label>Nombre del Estado</label>
+      <input ng-model="estado.nombre" type="text" class="form-control" placeholder="Introduce nuevo estado" required>
+  </div>
+   <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formTema.$invalid" ng-click="updateEstado(estado)">Guardar Estado
+  </button>
+  </form>
+</div>
+
+
+<div class="col-xs-6">
+  <form role="form" class="well well-sm" name="formMunicipio">
+  <div class="form-group">
+    <label>Nombre del Municipio</label>
+     <input ng-model="municipio.nombre" type="text" class="form-control" placeholder="Introduce nuevo municipio" required>
+  </div>
+  <div class="form-group">
+    <label>Estado del Municipio</label>
+      <select class="form-control" ng-disabled="!municipio.nombre" ng-model="municipio.estado" ng-options="opEs.nombre for opEs in opcionesEstado" required>
+      </select>
+  </div>
+  <button class=" btn btn-primary btn-lg btn-block" ng-disabled="formSubtema.$invalid" ng-click="updateMunicipio(municipio)">Guardar Subtema
+  </button>
+  </form>
+</div>
+
+  <div class="col-sm-12">
+    <br>
+    <br>
+    <div class="{{alerta.tipo}}" id="mensajes">
+      {{alerta.mensaje}}
+    </div>
+  </div>
+</div>

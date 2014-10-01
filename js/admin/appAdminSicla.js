@@ -31,6 +31,9 @@ siclaApp.config(['$routeProvider',
     }).when('/altas/recientes', {
     	templateUrl: 'partials/admin/notasRecientes.html',
     	controller: 'TblRecientesCtrl'
+    }).when('/altas/estados', {
+    	templateUrl: 'partials/admin/altaMedio.html',
+    	controller: 'FormEstadosCtrl'
     }).otherwise({
         redirectTo: '/altas/nota'
       });

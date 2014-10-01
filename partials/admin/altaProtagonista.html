@@ -50,11 +50,11 @@
     	<div class="form-group">
         	<h3 class="text-center">Asignar Cargo a Protagonista</h3>
             <hr />
-            <select ng-model="prot" ng-options="opProt for opProt in protagonistas" class="form-control" ng-change="getcargo(prot)" required>
+            <select ng-model="prot" ng-options="opProt.nombre for opProt in protagonistas" class="form-control" ng-change="getCargo(prot)" required>
             	<option value="" disabled selected>Selecciona un protagonista</option>
             </select>
             <hr />
-            <select ng-model="car" ng-options="opCar for opCar in crg" class="form-control" ng-disabled="!prot.id" required>
+            <select ng-model="car" ng-options="opCar.nombre for opCar in crg" class="form-control" ng-disabled="!prot.idProtagonista" required>
            		<option value="" disabled selected></option>
             </select>
         </div>

@@ -8,13 +8,13 @@ siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
 		console.log(data);
 		$scope.cargos = data;	 
 	 });
-	 $http.get("data/consultas/protagonistas.php").success(function(data){
-		console.log(data);
-		$scope.prot = data;	 
+	 $http.get("data/consultas/protagonistas.php").success(function(data1){
+		console.log(data1);
+		$scope.protagonistas = data1;	 
 	 });
      $scope.updateProtagonista=function(protagonista){
 		 $http.post("data/inserciones/insercionProtagonista.php",protagonista).success(function(data){
-			$scope.prot = data;
+			$scope.protagonistas = data;
 			console.log(data);	 
 			$scope.alerta.tipo = "alert alert-success";
          	$scope.alerta.mensaje =" Dato almacenado en base de datos";
@@ -48,19 +48,46 @@ siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
 siclaApp.controller('FormMedioCtrl', ['$scope','$http',
   function($scope,$http) {
      $scope.alerta = {"tipo":"","mensaje":""};
-     $scope.formMedio = {};
-
-
-     $scope.updateMedio=function(medio){
-      console.log(medio);
-      var $promise= $http.post("data/inserciones/insercionMedio.php",medio);
-     $promise.then(function(msg){
-      console.log(msg.data);
-     });
-      $scope.formMedio = angular.copy(medio);
-      $scope.alerta.tipo = "alert alert-success";
-      $scope.alerta.mensaje =" Dato almacenado en base de datos";
-     };
+          $scope.formMedio = {};
+          $scope.formAutor = {};
+          $scope.opcionesMedios = {};
+          $scope.opcionesAutor = {};
+          $http.get("data/consultas/medios.php").success(
+          function(data) {
+          	$scope.opcionesMedios = data;
+          	console.log(data);
+          });
+     
+          $scope.updateMedio=function(medio){
+           console.log(medio);
+           var $promise= $http.post("data/inserciones/insercionMedio.php",medio);
+          $promise.then(function(msg){
+           console.log(msg.data);
+          });
+           $scope.formMedio = angular.copy(medio);
+           $scope.alerta.tipo = "alert alert-success";
+           $scope.alerta.mensaje =" Dato almacenado en base de datos";
+          };
+          
+          $scope.getAutor=function(id) {
+          	console.log(id);
+          	var promise = $http.post("data/consultas/autorEnMedio.php",{"medio":id});
+          	promise.then(function(msg) {
+          		console.log(msg.data);
+          		$scope.opcionesAutor = msg.data;
+          	})
+          };
+          
+          $scope.updateColabora=function(medio, autor) {
+          	console.log(medio);
+          	console.log(autor);
+          	var promise = $http.post('data/inserciones/insercionMedioAutor.php', {"medio":medio, "auto":autor});
+          	promise.then(function(msg) {
+          		console.log(msg.data);
+          	});
+          	$scope.alerta.tipo = "alert alert-success";
+          	$scope.alerta.mensaje =" Dato almacenado en base de datos";
+          };
     }]); 
 
 siclaApp.controller('FormAutorCtrl', ['$scope','$http',
@@ -267,4 +294,26 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     		$scope.notas = data;
     		console.log(data);
     	});
+    }]);
+    
+    siclaApp.controller('FormEstadosCtrl', ['$scope', '$http',
+    function($scope, $http) {
+    	$http.get('data/consultas/estados.php').success(
+    	function(data) {
+    		$scope.opcionesEstados = data;
+    		console.log(data);
+    	});
+    	
+    	$scope.updateEstado = function(estado) {
+    		$http.post("data/inserciones/insercionEstado.php",estado).success(function(data) {
+    			console.log(data);
+    			$scope.opcionesEstados = data;
+    		});    		
+    	};
+    	
+    	$scope.updateMunicipio = function (municipio){
+    		$http.post("data/inserciones/insercionMunicipio.php",municipio).success(function(data) {
+    			console.log(data);
+    		});
+    	};
     }]);
