@@ -208,6 +208,8 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
   siclaApp.controller('FormNotasCtrl', ['$scope','$http',
   function($scope,$http) {
     $scope.nota={};
+    //$scope.nota.fecha = date();
+    $scope.nota.pagina = 1;
 	$scope.alerta = {"tipo":"","mensaje":""};
 	
 // OPCIONES PARA MEDIOS
@@ -225,7 +227,7 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 
 //Opciones para protagonista 
 	$http.get("data/consultas/protagonistas.php").success(function(data){
-		$scope.opcionesProtagonista = data;
+		$scope.opcionesProtagonsita = data;
 		console.log(data);	
 	});
 	
@@ -274,6 +276,14 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
           	$scope.alerta.mensaje =" Dato almacenado en base de datos";	
 		});	
 	};
+	//Opciones para Otros Subtemas
+	$scope.getSub = function(tema) {
+		$http.post("data/consultas/subtemas.php",{'tema':tema.idTema}).success(function(data){
+			console.log(data);
+			$scope.opcionesOtros = data;
+			$('select[ng-model="nota.otrosSub"] option[value=""]').text("Seleccione");
+		});
+	};
 		    
 // OPCIONES PARA TIPO DE NOTA No está implementad
         $scope.getTipo=function(){
@@ -283,7 +293,7 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
               $scope.opcionesTipoNota = datos;
               console.log($scope.opcionesTipoNota);
           });
-        }  
+        };  
     }]); 
     
     siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',

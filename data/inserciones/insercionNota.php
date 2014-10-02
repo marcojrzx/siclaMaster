@@ -18,7 +18,8 @@
 	$seccion = $datos['seccion'];
 	$municipio = $datos['municipio']['idMunicipio'];
 	$portada = $datos['portada'];
-	$mysqli->query("insert into nota values(null,'$titulo','$fecha','$pagina','$tipo',$municipio,'$sintesis','$texto',null,1)");
+	$url = $datos['url'];
+	$mysqli->query("insert into nota values(null,'$titulo','$fecha','$pagina','$tipo',$municipio,'$sintesis','$texto',null,1,$autor,$medio,$protagonista,'$url')");
 	$result = $mysqli->query("select * from nota");
 	$arr = array();
 	if ($result)

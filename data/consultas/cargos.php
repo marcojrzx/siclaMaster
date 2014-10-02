@@ -1,7 +1,7 @@
 <?php
 	require_once("../conexion.php");
 	$dato = json_decode(file_get_contents('php://input'), true);
-	$pro = $dato['id'];
+	$pro = $dato['protagonista'];
 	$arr = array();
 	$result = $mysqli->query("select ca.* from cargoProtagonista pr, cargo ca where pr.idProtagonista=$pro and pr.idCargo = ca.idCargo");
 	if($result)
