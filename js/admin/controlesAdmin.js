@@ -327,3 +327,22 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     		});
     	};
     }]);
+    
+    siclaApp.controller('altaAdmin', ['$scope','$http',
+      function($scope,$http) {
+        $scope.admin ={};
+        $scope.insertAdmin=function(newAdmn){
+          admin = angular.copy(newAdmn);
+            console.log(admin);   
+        var $promise= $http.post("data/inserciones/insercionAdmin.php",newAdmn);
+         $promise.then(function(msg){
+          console.log(msg.data);  
+              //$scope.alerta.tipo = "alert alert-success";
+              //$scope.alerta.mensaje =" Dato almacenado en base de datos";
+         });
+       };
+         // $http.get("data/bdNotasSimple2.php").success(function(data4){
+         // $scope.notasDefault = data4;
+         // console.log(data4);
+    
+      }]);
