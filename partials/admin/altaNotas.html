@@ -193,16 +193,16 @@
                     </div>
 
 </div>
-<div class="row">
+<div class="row" id="otsb">
 					<div class="col-xs-6">
 					  <div class="form-group">
 					    <div class="row">
 					      <div class="col-xs-3">    
-					        <label>Otros temas</label>
+					        <label>Otro tema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otros" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros)">
-					            <option value="" disabled selected>Seleccione</option>
+					          <select class="form-control" ng-model="nota.otros[0]" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros[0])" ng-click="masST(nota.otros[0].idTema)">
+					            <option value = '' disabled selected id="vacio">Seleccione</option>
 					          </select>
 					        </div>
 					      </div>
@@ -215,7 +215,7 @@
 					        <label>Subtema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otrosSub" ng-options="opOtSub.nombre for opOtSub in opcionesOtros" ng-disabled="!nota.otros">
+					          <select class="form-control" ng-model="nota.otrosSub[0]" ng-options="opOtSub.nombre for opOtSub in opcionesOtros" ng-disabled="!nota.otros[0]">
 					          <option value="" disabled selected></option>			            
 					          </select>
 					        </div>

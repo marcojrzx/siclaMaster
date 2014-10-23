@@ -205,11 +205,14 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 
 
 
-  siclaApp.controller('FormNotasCtrl', ['$scope','$http',
-  function($scope,$http) {
+  siclaApp.controller('FormNotasCtrl', ['$scope','$http', '$compile',
+  function($scope,$http,$compile) {
     $scope.nota={};
     //$scope.nota.fecha = date();
     $scope.nota.pagina = 1;
+    $scope.nota.otros = [];
+    $scope.nota.otrosSub = [];
+  var auxi = 0;
 	$scope.alerta = {"tipo":"","mensaje":""};
 	
 // OPCIONES PARA MEDIOS
@@ -293,7 +296,21 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
               $scope.opcionesTipoNota = datos;
               console.log($scope.opcionesTipoNota);
           });
-        };  
+        };
+    $scope.masST = function(valor){
+      if (valor == undefined)
+      {
+        auxi++;
+        var clone = $('#otsb').clone();
+        clone.find("select[ng-model='nota.otrosSub[0]']").attr("ng-model","nota.otrosSub["+auxi+"]").attr("ng-disabled","!nota.otros["+auxi+"]");
+        clone.find("select[ng-model='nota.otros[0]']").attr("ng-model","nota.otros["+auxi+"]").attr("ng-change","getSub(nota.otros["+auxi+"])");
+        clone.find("select[ng-model='nota.otros[0]']").attr("ng-click","masST(nota.otros["+auxi+"].idTema)");
+        clone.find("select[ng-model='nota.otros[0]']").empty().append("<option value = '' disabled selected>Seleccione</option>");
+        //console.log(clone);
+        $('#otsb').after($compile(clone)($scope));
+        //$('#vacio').val("");
+      }
+    };  
     }]); 
     
     siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',
