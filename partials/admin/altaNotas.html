@@ -150,7 +150,7 @@
                             <label>Pos/Neg</label>
                           </div>
                           <div class="col-xs-9">
-                            <select class="form-control" ng-control="nota.pos-neg">
+                            <select class="form-control" ng-model="nota.posneg">
                               <option value="" disabled selected>Seleccione</option>
                               <option value="positiva"> Positiva</option>
                               <option value="negativa"> Negativa</option>
@@ -201,8 +201,8 @@
 					        <label>Otro tema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otros[0]" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros[0])" ng-click="masST(nota.otros[0].idTema)">
-					            <option value = '' disabled selected id="vacio">Seleccione</option>
+					          <select class="form-control" ng-model="nota.otros" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros)">
+					            <option value='' disabled selected>Seleccione</option>
 					          </select>
 					        </div>
 					      </div>
@@ -215,7 +215,7 @@
 					        <label>Subtema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otrosSub[0]" ng-options="opOtSub.nombre for opOtSub in opcionesOtros" ng-disabled="!nota.otros[0]">
+					          <select class="form-control" ng-model="nota.otrosSub" ng-options="opOtSub.nombre for opOtSub in opcionesOtros" ng-disabled="!nota.otros">
 					          <option value="" disabled selected></option>			            
 					          </select>
 					        </div>
@@ -257,7 +257,32 @@
                       </div>
                     </div>
 </div>
-
+<div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>Número de Periodico</label>
+                          </div>
+                          <div class="col-xs-9">
+                              <input type="number" ng-model="nota.num" class="form-control" required/>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-3">    
+                            <label>URL</label>
+                          </div>
+                          <div class="col-xs-9">
+                            <input type="text" ng-model="nota.url" class="form-control" placeholder="Link de la nota"/>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+</div>
 
 
 

@@ -205,13 +205,14 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 
 
 
-  siclaApp.controller('FormNotasCtrl', ['$scope','$http', '$compile',
-  function($scope,$http,$compile) {
+  siclaApp.controller('FormNotasCtrl', ['$scope','$http', '$compile', '$timeout',
+  function($scope,$http,$compile,$timeout) {
     $scope.nota={};
     //$scope.nota.fecha = date();
     $scope.nota.pagina = 1;
-    $scope.nota.otros = [];
-    $scope.nota.otrosSub = [];
+    $scope.nota.num = 0;
+    //$scope.nota.otros = [];
+    //$scope.nota.otrosSub = [];
   var auxi = 0;
 	$scope.alerta = {"tipo":"","mensaje":""};
 	
@@ -236,7 +237,7 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 	
 //Opciones para municipio
 	$http.get("data/consultas/municipios.php").success(function(data){
-		$scope.opcionesMunicio = data;
+		$scope.opcionesMunicipio = data;
 		console.log(data);
 	});
 	
@@ -275,8 +276,21 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 		console.log(nota);
 		$http.post("data/inserciones/insercionNota.php", nota).success(function(data){
 			console.log(data);
-			$scope.alerta.tipo = "alert alert-success";
-          	$scope.alerta.mensaje =" Dato almacenado en base de datos";	
+			var file = document.getElementById("exampleInputFile"), formData = new FormData();
+			formData.append("imagen", file.files[0]);
+			formData.append("nota",data);
+			formData.append("nota","3");
+			$.ajax({
+				url:'data/inserciones/insercionPortada.php',
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				dataType: 'json',
+				success: function(ev) {				
+					console.log(ev);	
+				}
+			});
 		});	
 	};
 	//Opciones para Otros Subtemas
@@ -301,16 +315,28 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
       if (valor == undefined)
       {
         auxi++;
-        var clone = $('#otsb').clone();
+        var clone = $('#otsb').clone() ;
         clone.find("select[ng-model='nota.otrosSub[0]']").attr("ng-model","nota.otrosSub["+auxi+"]").attr("ng-disabled","!nota.otros["+auxi+"]");
-        clone.find("select[ng-model='nota.otros[0]']").attr("ng-model","nota.otros["+auxi+"]").attr("ng-change","getSub(nota.otros["+auxi+"])");
-        clone.find("select[ng-model='nota.otros[0]']").attr("ng-click","masST(nota.otros["+auxi+"].idTema)");
-        clone.find("select[ng-model='nota.otros[0]']").empty().append("<option value = '' disabled selected>Seleccione</option>");
-        //console.log(clone);
-        $('#otsb').after($compile(clone)($scope));
-        //$('#vacio').val("");
+        clone.find("select[ng-model='nota.otros[0]']").empty().append("<option value='' disabled>Seleccione</option>");
+        clone.find("select[ng-model='nota.otros[0]']").attr("ng-click","masST(nota.otros["+auxi+"].idTema)").attr("on-finish-render","sel("+auxi+")");        
+        clone.find("select[ng-model='nota.otros[0]']").attr("ng-model","nota.otros["+auxi+"]").attr("ng-change","getSub(nota.otros["+auxi+"])");        
+        var compiled = $compile(clone);
+        $('#otsb').after(clone);                
+		/*$scope.$watch('nota.otros['+auxi+']',function(){
+				$scope.nota.otros[auxi].idTema = "2";
+				//$scope.nota.otros[auxi] = 2;
+		});*/		
+		$timeout(function(){
+			$scope.nota.otros[auxi].idTema = "1";
+			//console.log("error");
+		});
+        /*$scope.$evalAsync(function() {
+        	if ($scope.nota.otros.length > auxi)
+        		$scope.nota.otros[auxi] = "";
+        });*/
+        compiled($scope);
       }
-    };  
+    };     
     }]); 
     
     siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',
@@ -332,14 +358,14 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     	});
     	
     	$scope.updateEstado = function(estado) {
-    		$http.post("data/inserciones/insercionEstado.php",estado).success(function(data) {
+    		$http.post("data/inserciones/insercionEstado.php", estado).success(function(data) {
     			console.log(data);
     			$scope.opcionesEstados = data;
-    		});    		
+    		});  		
     	};
     	
-    	$scope.updateMunicipio = function (municipio){
-    		$http.post("data/inserciones/insercionMunicipio.php",municipio).success(function(data) {
+    	$scope.updateMunicipio = function(municipio){
+    		$http.post("data/inserciones/insercionMunicipio.php", municipio).success(function(data) {
     			console.log(data);
     		});
     	};

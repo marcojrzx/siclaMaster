@@ -1,6 +1,6 @@
 <?php  
 	require_once("../conexion.php");
-	$datos = json_decode(file_get_contents('php://inputs'), true);
+	$datos = json_decode(file_get_contents('php://input'), true);
 	$nombre = $datos['nombre'];
 	$id = $datos['estado']['idEstado'];
 	$mysqli->query("insert into municipio values(null,'$nombre',$id)");
