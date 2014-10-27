@@ -96,7 +96,7 @@
                               <option value="0"> 0</option>
                               <option value="1"> 1</option>
                             </select>-->
-                            <input type="number" ng-model="nota.pagina" />
+                            <input type="number" ng-model="nota.pagina" class="form-control" />
                           </div>
                           </div>
                       </div>
@@ -193,7 +193,7 @@
                     </div>
 
 </div>
-<div class="row" id="otsb">
+<div class="row" ng-repeat="aux in auxiliarST">
 					<div class="col-xs-6">
 					  <div class="form-group">
 					    <div class="row">
@@ -201,8 +201,8 @@
 					        <label>Otro tema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otros" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros)">
-					            <option value='' disabled selected>Seleccione</option>
+					          <select class="form-control" ng-model="nota.otros[$index]" ng-options="opTema.nombre for opTema in opcionesTema" ng-change="getSub(nota.otros[$index],$index)" ng-click="masST(nota.otros[$index].idTema)">
+					            <option value=''>Seleccione</option>
 					          </select>
 					        </div>
 					      </div>
@@ -215,8 +215,8 @@
 					        <label>Subtema</label>
 					      </div>
 					      <div class="col-xs-9">
-					          <select class="form-control" ng-model="nota.otrosSub" ng-options="opOtSub.nombre for opOtSub in opcionesOtros" ng-disabled="!nota.otros">
-					          <option value="" disabled selected></option>			            
+					          <select class="form-control" ng-model="nota.otrosSub[$index]" ng-options="opOtSub.nombre for opOtSub in opcionesOtros[$index]" ng-disabled="!nota.otros[$index]">
+					          <option value="" disabled selected>Seleccione</option>			            
 					          </select>
 					        </div>
 					      </div>

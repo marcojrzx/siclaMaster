@@ -209,11 +209,12 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
   function($scope,$http,$compile,$timeout) {
     $scope.nota={};
     //$scope.nota.fecha = date();
+    $scope.auxiliarST = [0];
     $scope.nota.pagina = 1;
     $scope.nota.num = 0;
-    //$scope.nota.otros = [];
-    //$scope.nota.otrosSub = [];
-  var auxi = 0;
+    $scope.nota.otros = [];    
+    $scope.nota.otrosSub = [];
+    $scope.opcionesOtros = [];
 	$scope.alerta = {"tipo":"","mensaje":""};
 	
 // OPCIONES PARA MEDIOS
@@ -294,11 +295,10 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 		});	
 	};
 	//Opciones para Otros Subtemas
-	$scope.getSub = function(tema) {
+	$scope.getSub = function(tema, index) {
 		$http.post("data/consultas/subtemas.php",{'tema':tema.idTema}).success(function(data){
 			console.log(data);
-			$scope.opcionesOtros = data;
-			$('select[ng-model="nota.otrosSub"] option[value=""]').text("Seleccione");
+			$scope.opcionesOtros[index] = data;			
 		});
 	};
 		    
@@ -313,30 +313,11 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
         };
     $scope.masST = function(valor){
       if (valor == undefined)
-      {
-        auxi++;
-        var clone = $('#otsb').clone() ;
-        clone.find("select[ng-model='nota.otrosSub[0]']").attr("ng-model","nota.otrosSub["+auxi+"]").attr("ng-disabled","!nota.otros["+auxi+"]");
-        clone.find("select[ng-model='nota.otros[0]']").empty().append("<option value='' disabled>Seleccione</option>");
-        clone.find("select[ng-model='nota.otros[0]']").attr("ng-click","masST(nota.otros["+auxi+"].idTema)").attr("on-finish-render","sel("+auxi+")");        
-        clone.find("select[ng-model='nota.otros[0]']").attr("ng-model","nota.otros["+auxi+"]").attr("ng-change","getSub(nota.otros["+auxi+"])");        
-        var compiled = $compile(clone);
-        $('#otsb').after(clone);                
-		/*$scope.$watch('nota.otros['+auxi+']',function(){
-				$scope.nota.otros[auxi].idTema = "2";
-				//$scope.nota.otros[auxi] = 2;
-		});*/		
-		$timeout(function(){
-			$scope.nota.otros[auxi].idTema = "1";
-			//console.log("error");
-		});
-        /*$scope.$evalAsync(function() {
-        	if ($scope.nota.otros.length > auxi)
-        		$scope.nota.otros[auxi] = "";
-        });*/
-        compiled($scope);
+      {      	
+        var auxi = $scope.auxiliarST.length;
+        $scope.auxiliarST.push(auxi);               			
       }
-    };     
+    };    
     }]); 
     
     siclaApp.controller('TblRecientesCtrl', ['$scope', '$http',
