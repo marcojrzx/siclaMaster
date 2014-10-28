@@ -205,17 +205,22 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 
 
 
-  siclaApp.controller('FormNotasCtrl', ['$scope','$http', '$compile', '$timeout',
-  function($scope,$http,$compile,$timeout) {
+  siclaApp.controller('FormNotasCtrl', ['$scope','$http', '$filter',
+  function($scope,$http,$filter) {
     $scope.nota={};
     //$scope.nota.fecha = date();
     $scope.auxiliarST = [0];
+    $scope.auxiliarPT = [0];
     $scope.nota.pagina = 1;
-    $scope.nota.num = 0;
+    $scope.nota.num = 1;
     $scope.nota.otros = [];    
     $scope.nota.otrosSub = [];
     $scope.opcionesOtros = [];
-	$scope.alerta = {"tipo":"","mensaje":""};
+    $scope.nota.otrosPT = [];
+    $scope.opcionesPT = [];
+    $scope.nota.otrosCargo = [];
+    $scope.nota.fecha = $filter("date")(Date.now(), 'yyyy-MM-dd');
+	  $scope.alerta = {"tipo":"","mensaje":""};
 	
 // OPCIONES PARA MEDIOS
     $http.get("data/medios.php").success(
@@ -311,6 +316,21 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
               console.log($scope.opcionesTipoNota);
           });
         };
+    $scope.getoCar = function(Prot, index){
+      console.log(Prot);
+      $http.post("data/consultas/cargos.php",{"id":Prot.idProtagonista}).success(function(data){
+          console.log(data);
+          $scope.opcionesPT[index]=data;
+      });
+    };
+    //Añade una nueva fila para otros temas    
+    $scope.masPT = function(valor){
+      if (valor == undefined)
+      {       
+        var auxi = $scope.auxiliarPT.length;
+        $scope.auxiliarPT.push(auxi);                     
+      }
+    };
     $scope.masST = function(valor){
       if (valor == undefined)
       {      	

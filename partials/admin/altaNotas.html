@@ -90,12 +90,7 @@
                           <div class="col-xs-3">    
                             <label>Página</label>
                           </div>
-                          <div class="col-xs-9">
-                            <!--<select class="form-control" ng-model="nota.pagina">
-                              <option value="" disabled selected>Seleccione</option>
-                              <option value="0"> 0</option>
-                              <option value="1"> 1</option>
-                            </select>-->
+                          <div class="col-xs-9">                           
                             <input type="number" ng-model="nota.pagina" class="form-control" />
                           </div>
                           </div>
@@ -223,6 +218,36 @@
 					  </div>
 					</div>
 										
+</div>
+<div class="row" ng-repeat="aux in auxiliarPT"> 
+          <div class="col-xs-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-3">    
+                  <label>Otro Protagonista</label>
+                </div>
+                <div class="col-xs-9">
+                  <select class="form-control" ng-model="nota.otrosPT[$index]" ng-options="opPT.nombre for opPT in opcionesProtagonista[$index]" ng-change="getoCar(nota.otrosPT[$index], $index)" ng-click="masPT(nota.otrosPT[$index].idProtagonista)">
+                    <option value="" disabled selected>Seleccione</option>                 
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-3">    
+                  <label>Cargo</label>
+                </div>
+                <div class="col-xs-9">
+                  <select class="form-control" ng-model="nota.otrosCargo[$index]" ng-options="opCG.nombre for opCG in opcionesPT[$index]" ng-disabled="!nota.otrosPT[$index]">
+                    <option value="" disabled selected>Seleccione</option>                 
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
 </div>
 <div class="row">
                     <div class="col-xs-6">
