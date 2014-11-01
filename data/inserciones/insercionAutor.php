@@ -6,7 +6,7 @@
 	$genero = $dato['genero'];
 	$mysqli->query("INSERT INTO autor VALUES(null,'$nombre', '$genero')");
 	$idAutor = $mysqli->insert_id;
-	$mysqli->query("insert into colabora_en values ($idAutor, $idMedio)");
+	$mysqli->query("insert into colabora_en values (null,$idAutor, $idMedio)");
 	$query = $mysqli->query("select * from autor"); 
 	$arr = array();
 	while ($row = mysqli_fetch_assoc($query)) 

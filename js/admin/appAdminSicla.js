@@ -19,9 +19,9 @@ siclaApp.config(['$routeProvider',
       }).when('/altas/medio', {
         templateUrl: 'partials/admin/altaMedio.html',
         controller: 'FormMedioCtrl'
-      }).when('/altas/autor', {
-        templateUrl: 'partials/admin/altaAutores.html',
-        controller: 'FormAutorCtrl'
+      }).when('/altas/tipoNota', {
+        templateUrl: 'partials/admin/altaTipoNota.html',
+        controller: 'FormtpNotaCtrl'
       }).when('/altas/temas', {
         templateUrl: 'partials/admin/altaTemas.html',
         controller: 'FormTemasCtrl'

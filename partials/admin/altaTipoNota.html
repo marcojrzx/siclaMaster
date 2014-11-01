@@ -1,0 +1,17 @@
+<br>
+<div class="col-xs-5 col-xs-offset-3" >
+  <form name="formTpNota"class="well well-sm" role="form">
+      <h3 class="text-center">Alta de Tipo de Nota</h3>
+  <hr>
+    <div class="form-group">
+      <label>Nombre de Tipo</label>
+       <input ng-model="tipo.nombre" type="text" class="form-control" placeholder="Nombre del tipo de nota" required>
+    </div>
+    <br>      
+       <button class=" btn btn-primary btn-md btn-block" ng-disabled="formTpNota.$invalid" ng-click="updatetipo(tipo)">Guardar Tipo</button>
+  </form>
+  <br>
+      <div class="{{alerta.tipo}}" id="mensajes2">
+        {{alerta.mensaje}}
+      </div>
+</div>

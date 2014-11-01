@@ -75,10 +75,8 @@
                             <label>Tipo de nota</label>
                           </div>
                           <div class="col-xs-9">
-                              <select class="form-control" ng-model="nota.tipo">
+                              <select class="form-control" ng-model="nota.tipo" ng-options="opTP.nombre for opTP in opcionesNota">
                                 <option value="" disabled selected>Seleccione</option>
-                                <option value="1"> 8 Columnas</option>
-                                <option value="2"> Nota</option>
                               </select>
                           </div>
                         </div>

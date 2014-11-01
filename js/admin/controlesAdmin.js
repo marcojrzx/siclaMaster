@@ -63,6 +63,7 @@ siclaApp.controller('FormMedioCtrl', ['$scope','$http',
            var $promise= $http.post("data/inserciones/insercionMedio.php",medio);
           $promise.then(function(msg){
            console.log(msg.data);
+           $scope.opcionesMedios = msg.data;
           });
            $scope.formMedio = angular.copy(medio);
            $scope.alerta.tipo = "alert alert-success";
@@ -88,29 +89,28 @@ siclaApp.controller('FormMedioCtrl', ['$scope','$http',
           	$scope.alerta.tipo = "alert alert-success";
           	$scope.alerta.mensaje =" Dato almacenado en base de datos";
           };
+
+          $scope.updateAutor=function(autor){
+            console.log(autor);
+            var $promise = $http.post("data/inserciones/insercionAutor.php",autor);
+           $promise.then(function(msg) {
+              console.log(msg);
+            });
+            $scope.formAutor = angular.copy(autor);
+            $scope.alerta.tipo = "alert alert-success";
+            $scope.alerta.mensaje =" Dato almacenado en base de datos";
+          };
     }]); 
 
-siclaApp.controller('FormAutorCtrl', ['$scope','$http',
+siclaApp.controller('FormtpNotaCtrl', ['$scope','$http',
   function($scope,$http) {
-    $scope.alerta = {"tipo":"","mensaje":""};
-    $scope.formAutor = {};
-    $scope.opcionesMedios={};
-// OPCIONES PARA MEDIOS
-	$http.get("data/medios.php").success(
-    function(data2){
-        $scope.opcionesMedios = data2;
-        console.log($scope.opcionesMedios);
-    });     
-     $scope.updateAutor=function(autor){
-     console.log(autor);
-     var $promise = $http.post("data/inserciones/insercionAutor.php",autor);
-     $promise.then(function(msg) {
-     	console.log(msg);
-     });
-      $scope.formAutor = angular.copy(autor);
-          $scope.alerta.tipo = "alert alert-success";
-          $scope.alerta.mensaje =" Dato almacenado en base de datos";
-     };
+    $scope.updatetipo = function(tp){
+      $http.post("data/insercionesTipoNota.php",tp).success(function(data){
+        console.log(data);
+        $scope.alerta.tipo = "alert alert-success";
+        $scope.alerta.mensaje =" Dato almacenado en base de datos";
+      });
+    };
     }]); 
 
 
@@ -221,7 +221,11 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     $scope.nota.otrosCargo = [];
     $scope.nota.fecha = $filter("date")(Date.now(), 'yyyy-MM-dd');
 	  $scope.alerta = {"tipo":"","mensaje":""};
-	
+//opciones para tipos de nota
+    $http.get("data/consultas/tipo_nota.php").success(function(data){
+      $scope.opcionesNota = data;
+      console.log(data);
+    });
 // OPCIONES PARA MEDIOS
     $http.get("data/medios.php").success(
     function(data2){
@@ -374,11 +378,15 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     
     siclaApp.controller('altaAdmin', ['$scope','$http',
       function($scope,$http) {
-        $scope.admin ={};
+        $scope.usuario ={};
+        $http.get("data/consultas/tipoUsuario.php").success(function(data){
+          $scope.opcionesTipo=data;
+          console.log(data);
+        });
         $scope.insertAdmin=function(newAdmn){
-          admin = angular.copy(newAdmn);
-            console.log(admin);   
-        var $promise= $http.post("data/inserciones/insercionAdmin.php",newAdmn);
+          usuario = angular.copy(newAdmn);
+            console.log(usuario);   
+        var $promise= $http.post("data/inserciones/insercionUsuario.php",newAdmn);
          $promise.then(function(msg){
           console.log(msg.data);  
               //$scope.alerta.tipo = "alert alert-success";
