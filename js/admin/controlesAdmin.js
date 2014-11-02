@@ -63,7 +63,30 @@ siclaApp.controller('FormMedioCtrl', ['$scope','$http',
            var $promise= $http.post("data/inserciones/insercionMedio.php",medio);
           $promise.then(function(msg){
            console.log(msg.data);
-           $scope.opcionesMedios = msg.data;
+           if (document.getElementById("exampleInputFile").value != "")
+           {
+           	var file = document.getElementById("exampleInputFile"), formData = new FormData();
+           	formData.append("imagen", file.files[0]);
+           	formData.append("medio",msg.data);           	
+           	$.ajax({
+           		url:'data/inserciones/insercionLogo.php',
+           		type: 'POST',
+           		data: formData,
+           		processData: false,
+           		contentType: false,
+           		dataType: 'json',
+           		success: function(ev) {				
+           			console.log(ev);	
+           			$scope.opcionesMedios = data;
+           		}
+           	});
+           }else {
+           	$http.get("data/consultas/medios.php").success(function(data) {
+           		console.log(data);
+           		$scope.opcionesMedios = data;
+           	});
+           }
+           
           });
            $scope.formMedio = angular.copy(medio);
            $scope.alerta.tipo = "alert alert-success";
@@ -292,7 +315,6 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 				var file = document.getElementById("exampleInputFile"), formData = new FormData();
 				formData.append("imagen", file.files[0]);
 				formData.append("nota",data);
-				formData.append("nota","3");
 				$.ajax({
 					url:'data/inserciones/insercionPortada.php',
 					type: 'POST',

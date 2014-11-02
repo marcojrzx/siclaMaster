@@ -19,7 +19,6 @@
 	$municipio = $datos['municipio']['idMunicipio'];
 	$url = $datos['url'];
 	$per = $datos['num'];
-	$nota = 1;
 	$mysqli->query("insert into nota values(null,'$titulo','$fecha',$pagina,$tipo,'$pos','$sintesis','$texto',$per,'$url',null,$municipio,$usr,$autor)");
 	$nota = mysqli_insert_id($mysqli);
 	$mysqli->query("insert into trata_de values($nota,$subtema)");
