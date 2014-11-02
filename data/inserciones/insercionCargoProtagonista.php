@@ -5,6 +5,7 @@
 	$Carg = $dato["car"]["idCargo"];
 	$mysqli->query("insert into cargoProtagonista values (null, $Carg, $Prot)");
 	$result = $mysqli->query("select * from cargo where idCargo not in(select idCargo from cargoProtagonista where idProtagonista=$Prot)");
+	$arr = array();
 	if ($result)
 	{
 		while($row = mysqli_fetch_assoc($result))

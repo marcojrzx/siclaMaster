@@ -14,20 +14,27 @@
 	$pos = $datos['posneg'];
 	$subtema = $datos['subtema']['idSubtema'];
 	$otroSB = $datos['otrosSub'];
-	$otrosCG = $datos['otrosCargo']
+	$otrosCG = $datos['otrosCargo'];
 	$seccion = $datos['seccion'];
 	$municipio = $datos['municipio']['idMunicipio'];
 	$url = $datos['url'];
 	$per = $datos['num'];
+	$nota = 1;
 	$mysqli->query("insert into nota values(null,'$titulo','$fecha',$pagina,$tipo,'$pos','$sintesis','$texto',$per,'$url',null,$municipio,$usr,$autor)");
 	$nota = mysqli_insert_id($mysqli);
 	$mysqli->query("insert into trata_de values($nota,$subtema)");
-	for ($i = 0; $i < count($otrosSub);$i++)
-		if ($otrosSub[$i]!=null)
-				$mysqli->query("insert into trata_de values($nota,$otrosSub[$i]['idSubtema'])");
 	$mysqli->query("insert into notaProtagonista values($nota,$cargo,1)");
+	for ($i = 0; $i < count($otroSB);$i++)
+		if ($otroSB[$i]!=null)
+		{
+			$aux = $otroSB[$i]['idSubtema'];
+			$mysqli->query("insert into trata_de values($nota,$aux)");
+		}
 	for ($i=0; $i < count($otrosCG); $i++)
 		if($otrosCG[$i]!=null)
-				$mysqli->query("insert into notaProtagonista values($nota,$otrosCG[$i]['idCP'],2)")
+		{
+			$aux = $otrosCG[$i]['idCP'];
+			$mysqli->query("insert into notaProtagonista values($nota,$aux,2)");
+		}
 	echo $nota;
 ?>

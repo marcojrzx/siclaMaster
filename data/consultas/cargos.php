@@ -5,9 +5,11 @@
 	$arr = array();
 	$result = $mysqli->query("select ca.*, pr.idCP from cargoProtagonista pr, cargo ca where pr.idProtagonista=$pro and pr.idCargo = ca.idCargo");
 	if($result)
+	{
 		while($row = mysqli_fetch_assoc($result))
 			$arr[] = $row;
+		mysqli_free_result($result);			
+	}
 	echo json_encode($arr);
-	mysqli_free_result($result);
 	mysqli_close($mysqli);
 ?>

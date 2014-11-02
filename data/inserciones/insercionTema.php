@@ -3,7 +3,7 @@
 	$dato = json_decode(file_get_contents('php://input'), true);
 	$area = $dato['area']['idArea'];
 	$nom = $dato['nombre'];
-	$mysqli->query("insert into Tema values (null, '$nom', $area)");
+	$mysqli->query("insert into Tema values (null, $area, '$nom')");
 	$result = $mysqli->query("select * from Tema");
 	$arr = array();
 	while ($row = mysqli_fetch_assoc($result)) 

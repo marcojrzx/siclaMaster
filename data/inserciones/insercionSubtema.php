@@ -3,7 +3,7 @@
 	$dato = json_decode(file_get_contents('php://input'), true);
 	$tema = $dato['tema']['idTema'];
 	$nombre = $dato['nombre'];
-	$mysqli->query("insert into Subtema values(null, '$nombre', $tema)");
+	$mysqli->query("insert into Subtema values(null, $tema, '$nombre')");
 	$result = $mysqli->query("select * from Subtema");
 	$arr = array();
 	while ($row = mysqli_fetch_assoc($result)) 

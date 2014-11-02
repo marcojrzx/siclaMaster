@@ -6,7 +6,7 @@
 	$gen = $dato['genero'];
 	$mysqli->query("insert into protagonista values(null,'$nombre','$gen')");
 	$id = mysqli_insert_id($mysqli);
-	$mysqli->query("insert into cargoProtagonista values($cargo,$id)");
+	$mysqli->query("insert into cargoProtagonista values(null,$cargo,$id)");
 	$result = $mysqli->query("select * from protagonista");
 	$arr = array();
 	if($result)

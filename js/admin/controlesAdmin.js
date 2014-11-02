@@ -3,6 +3,7 @@
 siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
   function($scope,$http) {
     $scope.alerta = {"tipo":"","mensaje":""};
+    $scope.formCargoProt = {};
      $scope.formProtagonista = {};
 	 $http.get("data/consultas/allcargos.php").success(function(data){
 		console.log(data);
@@ -26,9 +27,8 @@ siclaApp.controller('FormProtagonistaCtrl', ['$scope','$http',
 			$scope.crg = ev;	
 		});
 	};
-	$scope.updateProt = function(){
-		var datos = $scope.formCargoProt;
-		$http.post("data/inserciones/insercionCargoProtagonista.php", datos).success(function(data){
+	$scope.updateProt = function(prot, carg){
+		$http.post("data/inserciones/insercionCargoProtagonista.php", {prot:prot, car:carg}).success(function(data){
 			console.log(data);
 			$scope.crg = data;
 			$scope.alerta.tipo = "alert alert-success";
@@ -104,8 +104,9 @@ siclaApp.controller('FormMedioCtrl', ['$scope','$http',
 
 siclaApp.controller('FormtpNotaCtrl', ['$scope','$http',
   function($scope,$http) {
+  	$scope.alerta = {"tipo":"","mensaje":""};
     $scope.updatetipo = function(tp){
-      $http.post("data/insercionesTipoNota.php",tp).success(function(data){
+      $http.post("data/inserciones/insercionTipoNota.php",tp).success(function(data){
         console.log(data);
         $scope.alerta.tipo = "alert alert-success";
         $scope.alerta.mensaje =" Dato almacenado en base de datos";
@@ -286,21 +287,24 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
 		console.log(nota);
 		$http.post("data/inserciones/insercionNota.php", nota).success(function(data){
 			console.log(data);
-			var file = document.getElementById("exampleInputFile"), formData = new FormData();
-			formData.append("imagen", file.files[0]);
-			formData.append("nota",data);
-			formData.append("nota","3");
-			$.ajax({
-				url:'data/inserciones/insercionPortada.php',
-				type: 'POST',
-				data: formData,
-				processData: false,
-				contentType: false,
-				dataType: 'json',
-				success: function(ev) {				
-					console.log(ev);	
-				}
-			});
+			if (document.getElementById("exampleInputFile").value != "")
+			{
+				var file = document.getElementById("exampleInputFile"), formData = new FormData();
+				formData.append("imagen", file.files[0]);
+				formData.append("nota",data);
+				formData.append("nota","3");
+				$.ajax({
+					url:'data/inserciones/insercionPortada.php',
+					type: 'POST',
+					data: formData,
+					processData: false,
+					contentType: false,
+					dataType: 'json',
+					success: function(ev) {				
+						console.log(ev);	
+					}
+				});
+			}
 		});	
 	};
 	//Opciones para Otros Subtemas
@@ -322,7 +326,7 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
         };
     $scope.getoCar = function(Prot, index){
       console.log(Prot);
-      $http.post("data/consultas/cargos.php",{"id":Prot.idProtagonista}).success(function(data){
+      $http.post("data/consultas/cargos.php",{"protagonista":Prot.idProtagonista}).success(function(data){
           console.log(data);
           $scope.opcionesPT[index]=data;
       });
@@ -356,6 +360,7 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     
     siclaApp.controller('FormEstadosCtrl', ['$scope', '$http',
     function($scope, $http) {
+    	$scope.alerta = {"tipo":"","mensaje":""};
     	$http.get('data/consultas/estados.php').success(
     	function(data) {
     		$scope.opcionesEstados = data;
@@ -366,18 +371,23 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
     		$http.post("data/inserciones/insercionEstado.php", estado).success(function(data) {
     			console.log(data);
     			$scope.opcionesEstados = data;
+    			$scope.alerta.tipo = "alert alert-success";
+    			$scope.alerta.mensaje =" Dato almacenado en base de datos";
     		});  		
     	};
     	
     	$scope.updateMunicipio = function(municipio){
     		$http.post("data/inserciones/insercionMunicipio.php", municipio).success(function(data) {
     			console.log(data);
+    			$scope.alerta.tipo = "alert alert-success";
+    			$scope.alerta.mensaje =" Dato almacenado en base de datos";
     		});
     	};
     }]);
     
     siclaApp.controller('altaAdmin', ['$scope','$http',
       function($scope,$http) {
+        $scope.alerta = {"tipo":"","mensaje":""};
         $scope.usuario ={};
         $http.get("data/consultas/tipoUsuario.php").success(function(data){
           $scope.opcionesTipo=data;
@@ -389,8 +399,8 @@ siclaApp.controller('FormTemasCtrl', ['$scope','$http',
         var $promise= $http.post("data/inserciones/insercionUsuario.php",newAdmn);
          $promise.then(function(msg){
           console.log(msg.data);  
-              //$scope.alerta.tipo = "alert alert-success";
-              //$scope.alerta.mensaje =" Dato almacenado en base de datos";
+              $scope.alerta.tipo = "alert alert-success";
+              $scope.alerta.mensaje =" Dato almacenado en base de datos";
          });
        };
          // $http.get("data/bdNotasSimple2.php").success(function(data4){
